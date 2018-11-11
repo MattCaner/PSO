@@ -11,6 +11,8 @@ public:
     double validate(double (*Validator)(V2d& v));   /** Returns validator function for the particle position */
     void adjustSpeed(V2d bestPos, double weight1, double weight2,double omega); /** Adjusts speed with weight1, weight2, omega and best location known */
     V2d getPos() const {return pos_;}   /** Gets position. Notice that function is const and inline */
+    double getLastVal() const {return lastVal_;};    /** returns last validated value if needed. This prevents evaluating the same value more than one time. */
+    double getBestVal() const {return bestVal_;}    /** returns best value evaluated by this particle. */
 private:
     V2d pos_;
     V2d speed_;
@@ -18,4 +20,5 @@ private:
     double bestVal_;
     double vmax_;
     Area bounds_;
+    double lastVal_;
 };

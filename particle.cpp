@@ -10,11 +10,12 @@ Particle::Particle(Area bounds, double maxSpeed){
     speed_ = V2d(randomDouble(-1*maxSpeed,maxSpeed),randomDouble(-1*maxSpeed,maxSpeed));
     vmax_ = maxSpeed;
     bounds_ = bounds;
+    bestVal_ = 1000;
 }
 
 void Particle::move(){
     pos_ = pos_ + speed_;
-    /*
+    
     if(pos_.getX()>bounds_.right){
         speed_.bounceVertical();
     }
@@ -27,15 +28,16 @@ void Particle::move(){
     if(pos_.getY()<bounds_.down){
         speed_.bounceHorizontal();
     }
-    */
+    
 }
 
 double Particle::validate(double (*Validator)(V2d& v)){
     double tmp = Validator(pos_);
-    if(tmp>bestVal_){
+    if(tmp<bestVal_){
         bestVal_ = tmp;
         bestPlace_ = pos_;
     }
+    lastVal_ = tmp;
     return tmp;
 }
 

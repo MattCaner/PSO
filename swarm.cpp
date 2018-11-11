@@ -21,6 +21,10 @@ void Swarm::oneStep(){
     }
 }
 
+const Particle* Swarm::operator[](int n){
+    return (const Particle*)(swarmTable_+n);
+}
+
 Swarm::~Swarm(){
     delete [] swarmTable_;
 }

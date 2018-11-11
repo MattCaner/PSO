@@ -10,6 +10,8 @@ public:
     double getBest() const {return bestValue_;}     /** returns best function value ever evaluated by swarm. */
     V2d getBestPlace() const {return bestPlace_;}   /** returns V2d representing where best function value was found. */
     ~Swarm();   /** Frees allocated space. */
+    int getSize() const { return size_; }   /** Returns the size of the swarm. */
+    const Particle* operator[](int n);      /** Returns const pointer to a particle from swarmTable, from position n.  */
 private:
     double (*Validator_)(V2d&);
     double c1_;
